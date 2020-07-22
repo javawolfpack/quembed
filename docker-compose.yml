@@ -6,18 +6,7 @@ services:
     build: .
     volumes:
        - .:/code
-    expose:
-       - "8000"
+    ports:
+       - 8001:8000
     user: "1000:1004"
-    environment:
-        - url=https://quembed.bryancdixon.com
-        - VIRTUAL_HOST=quembed.bryancdixon.com
-        - VIRTUAL_PORT=8000
-        - LETSENCRYPT_HOST=quembed.bryancdixon.com
-        - LETSENCRYPT_EMAIL=webmaster@bryancdixon.com
     command: python /code/mysite/manage.py runserver 0.0.0.0:8000
-
-networks:
-    default:
-        external:
-            name: ${NETWORK:-webproxy}
